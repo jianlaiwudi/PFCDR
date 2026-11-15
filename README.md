@@ -132,6 +132,38 @@ seeds and separate model/prototype cache directories, and commit each
 parameter change before running. The paper does not publish the exact
 split/checkpoint-selection/seeds needed to guarantee the same table values.
 
+### Recorded single run (seed 2020)
+
+The complete run is recorded in
+[`results/book_movie_20_seed2020.json`](results/book_movie_20_seed2020.json),
+including every epoch, dataset checksums, settings and validation results.
+
+| Method | Minimum MAE | MAE epoch | Minimum RMSE | RMSE epoch |
+| --- | ---: | ---: | ---: | ---: |
+| TGTOnly | 4.150802 | 10 | 4.740552 | 10 |
+| EMCDR | 1.125340 | 8 | 1.425091 | 8 |
+| PFCDR (upstream `sfcdr` keys) | 0.943425 | 1 | 1.226853 | 2 |
+
+These are independently selected minima from one run, following the original
+`update_results()`. The paper's PFCDR values, 0.9579 / 1.2437, are a ten-run
+mean. The locally saved last-epoch PFCDR checkpoint has MAE 0.956729 and RMSE
+1.227226; it is distinct from the independently selected best metrics above.
+
+The split contains 29,910 training common users, 7,478 test common users and
+170,081 test ratings. All three prototype files have the expected unique
+users and ten finite prototype coordinates. Comparing the baseline and
+last-epoch checkpoints confirms that source embeddings, target embeddings
+and the EMCDR mapping stayed unchanged during PFCDR; only `rp_mapping`
+was updated.
+
+The first process encountered a CSV sharing `PermissionError` during target
+prototype output. The completed source prototypes and baseline checkpoint
+were retained. Target prototypes were rebuilt with the original inversion
+class after replaying the original random sequence; all 1,200 previously
+written target rows matched exactly. Progress reads were changed to allow
+concurrent writes. The repository's Python source files remain identical to
+`c88e6fe`, and the experiment settings did not change during recovery.
+
 If the code is helpful for you, please cite this paper:
 
 ```
