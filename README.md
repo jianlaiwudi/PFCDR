@@ -85,6 +85,53 @@ If you wanna try different `weight decay`, `embedding dimmension` or more tasks,
 the settings in `./config.json`. If you wanna try the parameter of inversion stage you may change 
 the settings in `./inversion_config.json`.
 
+## Book to Movie: 20% test users
+
+This run uses the original Python source files at upstream revision
+`c88e6fe`: task 1, MF, ratio `[0.8, 0.2]`, seed 2020, 10 epochs,
+embedding dimension 10, learning rate 0.01, prototype learning rate 0.005.
+The 20% split is over common users, with all their target-domain ratings
+held out. It does not mean holding out 20% of individual ratings.
+
+On an RTX 4060 Laptop GPU with 8 GB VRAM, the original inversion batch of
+200 passed a forward/backward/Adam memory check (about 4581 MiB peak).
+The original evaluation batch of 1024 ran out of GPU memory. Only task 1's
+`batchsize_test` is reduced to 128 (about 1487 MiB in the evaluation check,
+including a 400 MiB reserve). Training batches, inversion settings, losses,
+mapping functions and the scoring/voting algorithm are unchanged.
+The MF implementation's existing hard-coded Top-K remains 70000.
+
+Preprocessing uses Python 3.10.20, NumPy 1.26.4, pandas 2.2.3 and tqdm
+4.67.1. Training uses Python 3.11.14, PyTorch 2.3.1 with CUDA 11.8,
+NumPy 1.26.4, pandas 2.3.3, SciPy 1.16.2 and tqdm 4.67.1.
+Python 3.10 is used for preprocessing to retain the original set sampling
+without editing the source. Set `$prepPython` and `$trainPython` to the
+respective environment executables before running these PowerShell commands
+from the repository directory:
+
+```powershell
+$env:PYTHONHASHSEED = '2020'
+$env:CUDA_VISIBLE_DEVICES = '0'
+& $prepPython -c "import json; from preprocessing import DataPreprocessingMid; c=json.load(open('config.json')); DataPreprocessingMid(c['root'],'Books').main()"
+& $prepPython -c "import json; from preprocessing import DataPreprocessingMid; c=json.load(open('config.json')); DataPreprocessingMid(c['root'],'Movies_and_TV').main()"
+& $prepPython -c "import json,random; from preprocessing import DataPreprocessingReady; random.seed(2020); c=json.load(open('config.json')); DataPreprocessingReady(c['root'],c['src_tgt_pairs'],'1',[0.8,0.2]).main()"
+git rev-parse HEAD
+& $trainPython -u main.py --task 1 --base_model MF --gpu 0 --seed 2020 --epoch 10 --lr 0.01 --lr_prototype 0.005
+```
+
+The data-preparation commands call the original classes for this task only.
+The training command retains the original `main.py -> Run.main()` flow.
+Omit the `process_data_*` flags during training: the original parser treats
+an explicitly passed string `0` as truthy. The ratio is the original default.
+
+Record the Git commit, full commands, environment versions and console log
+for each run. A single run yields the source code's per-epoch minimum test
+MAE and RMSE; these two minima may occur in different epochs. It is not the
+paper's ten-run mean. For independent repetitions, use different training
+seeds and separate model/prototype cache directories, and commit each
+parameter change before running. The paper does not publish the exact
+split/checkpoint-selection/seeds needed to guarantee the same table values.
+
 If the code is helpful for you, please cite this paper:
 
 ```
