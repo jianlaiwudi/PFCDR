@@ -201,7 +201,7 @@ as additional independent runs.
 <!-- FULL_REPRODUCTION_TABLE_START -->
 | Task | Test users | Runs | TGT MAE | TGT RMSE | EMCDR MAE | EMCDR RMSE | PFCDR MAE | PFCDR RMSE |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Book → Movie | 20% | 1/2 | — | — | — | — | — | — |
+| Book → Movie | 20% | 2/2 | 4.1960 | 4.7702 | 1.1127 | 1.4044 | 0.9347 | 1.2129 |
 | Book → Movie | 50% | 0/2 | — | — | — | — | — | — |
 | Book → Movie | 80% | 0/2 | — | — | — | — | — | — |
 | Book → Music | 20% | 0/2 | — | — | — | — | — | — |
