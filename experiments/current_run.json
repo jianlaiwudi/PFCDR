@@ -1,0 +1,43 @@
+{
+  "job_id": "task1_beta20_seed2021",
+  "task": "1",
+  "ratio": [
+    0.8,
+    0.2
+  ],
+  "seed": 2021,
+  "base_model": "MF",
+  "epoch": 10,
+  "emb_dim": 10,
+  "lr": 0.01,
+  "lr_prototype": 0.005,
+  "wd": 0,
+  "task_settings": {
+    "src": "Books",
+    "tgt": "Movies_and_TV",
+    "co_user_num": 37388,
+    "topk": 85000,
+    "uid_src": 603668,
+    "iid_src": 367982,
+    "uid_tgt": 123960,
+    "iid_tgt": 50052,
+    "batchsize_src": 512,
+    "batchsize_tgt": 512,
+    "batchsize_meta": 512,
+    "batchsize_map": 128,
+    "batchsize_test": 128
+  },
+  "inversion": {
+    "syn_root": "./syn_data/",
+    "iter": 300,
+    "batch": 200,
+    "r_feature": 0,
+    "lr": 0.0001,
+    "weight_decay": 0.0001,
+    "clean_gen_data": true,
+    "target_label": 5,
+    "store_best_results": true
+  },
+  "effective_mf_topk": 70000,
+  "attempt": 1
+}
