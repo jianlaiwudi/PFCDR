@@ -1,11 +1,11 @@
 {
-  "job_id": "task1_beta80_seed2021",
-  "task": "1",
+  "job_id": "task2_beta20_seed2020",
+  "task": "2",
   "ratio": [
-    0.2,
-    0.8
+    0.8,
+    0.2
   ],
-  "seed": 2021,
+  "seed": 2020,
   "base_model": "MF",
   "epoch": 10,
   "emb_dim": 10,
@@ -14,13 +14,13 @@
   "wd": 0,
   "task_settings": {
     "src": "Books",
-    "tgt": "Movies_and_TV",
-    "co_user_num": 37388,
-    "topk": 85000,
+    "tgt": "CDs_and_Vinyl",
+    "co_user_num": 16738,
+    "topk": 50000,
     "uid_src": 603668,
     "iid_src": 367982,
-    "uid_tgt": 123960,
-    "iid_tgt": 50052,
+    "uid_tgt": 75258,
+    "iid_tgt": 64443,
     "batchsize_src": 512,
     "batchsize_tgt": 512,
     "batchsize_meta": 512,
