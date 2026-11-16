@@ -1,0 +1,174 @@
+{
+  "planned_runs": 90,
+  "completed_runs": 1,
+  "complete": false,
+  "conditions": [
+    {
+      "task": "1",
+      "test_percentage": 20,
+      "completed": 1,
+      "expected": 10,
+      "training_seeds": [
+        2020
+      ],
+      "complete": false,
+      "mean": null,
+      "sample_std": null,
+      "paper_reference": {
+        "tgt_mae": 4.1831,
+        "tgt_rmse": 4.7536,
+        "emcdr_mae": 1.1651,
+        "emcdr_rmse": 1.4548,
+        "sfcdr_mae": 0.9579,
+        "sfcdr_rmse": 1.2437
+      }
+    },
+    {
+      "task": "1",
+      "test_percentage": 50,
+      "completed": 0,
+      "expected": 10,
+      "training_seeds": [],
+      "complete": false,
+      "mean": null,
+      "sample_std": null,
+      "paper_reference": {
+        "tgt_mae": 4.2288,
+        "tgt_rmse": 4.792,
+        "emcdr_mae": 1.1798,
+        "emcdr_rmse": 1.4933,
+        "sfcdr_mae": 0.9742,
+        "sfcdr_rmse": 1.3113
+      }
+    },
+    {
+      "task": "1",
+      "test_percentage": 80,
+      "completed": 0,
+      "expected": 10,
+      "training_seeds": [],
+      "complete": false,
+      "mean": null,
+      "sample_std": null,
+      "paper_reference": {
+        "tgt_mae": 4.2123,
+        "tgt_rmse": 4.8149,
+        "emcdr_mae": 1.3248,
+        "emcdr_rmse": 1.6737,
+        "sfcdr_mae": 1.0689,
+        "sfcdr_rmse": 1.4779
+      }
+    },
+    {
+      "task": "2",
+      "test_percentage": 20,
+      "completed": 0,
+      "expected": 10,
+      "training_seeds": [],
+      "complete": false,
+      "mean": null,
+      "sample_std": null,
+      "paper_reference": {
+        "tgt_mae": 4.4873,
+        "tgt_rmse": 5.1672,
+        "emcdr_mae": 1.3524,
+        "emcdr_rmse": 1.6737,
+        "sfcdr_mae": 1.0717,
+        "sfcdr_rmse": 1.4548
+      }
+    },
+    {
+      "task": "2",
+      "test_percentage": 50,
+      "completed": 0,
+      "expected": 10,
+      "training_seeds": [],
+      "complete": false,
+      "mean": null,
+      "sample_std": null,
+      "paper_reference": {
+        "tgt_mae": 4.5073,
+        "tgt_rmse": 5.1727,
+        "emcdr_mae": 1.4723,
+        "emcdr_rmse": 1.8,
+        "sfcdr_mae": 1.2386,
+        "sfcdr_rmse": 1.7167
+      }
+    },
+    {
+      "task": "2",
+      "test_percentage": 80,
+      "completed": 0,
+      "expected": 10,
+      "training_seeds": [],
+      "complete": false,
+      "mean": null,
+      "sample_std": null,
+      "paper_reference": {
+        "tgt_mae": 4.5204,
+        "tgt_rmse": 5.2308,
+        "emcdr_mae": 1.7191,
+        "emcdr_rmse": 2.1119,
+        "sfcdr_mae": 1.4947,
+        "sfcdr_rmse": 2.1358
+      }
+    },
+    {
+      "task": "3",
+      "test_percentage": 20,
+      "completed": 0,
+      "expected": 10,
+      "training_seeds": [],
+      "complete": false,
+      "mean": null,
+      "sample_std": null,
+      "paper_reference": {
+        "tgt_mae": 4.1077,
+        "tgt_rmse": 4.7057,
+        "emcdr_mae": 1.1669,
+        "emcdr_rmse": 1.491,
+        "sfcdr_mae": 0.9865,
+        "sfcdr_rmse": 1.2658
+      }
+    },
+    {
+      "task": "3",
+      "test_percentage": 50,
+      "completed": 0,
+      "expected": 10,
+      "training_seeds": [],
+      "complete": false,
+      "mean": null,
+      "sample_std": null,
+      "paper_reference": {
+        "tgt_mae": 4.1232,
+        "tgt_rmse": 4.6848,
+        "emcdr_mae": 1.2114,
+        "emcdr_rmse": 1.5332,
+        "sfcdr_mae": 1.1014,
+        "sfcdr_rmse": 1.3262
+      }
+    },
+    {
+      "task": "3",
+      "test_percentage": 80,
+      "completed": 0,
+      "expected": 10,
+      "training_seeds": [],
+      "complete": false,
+      "mean": null,
+      "sample_std": null,
+      "paper_reference": {
+        "tgt_mae": 4.1381,
+        "tgt_rmse": 4.7436,
+        "emcdr_mae": 1.2373,
+        "emcdr_rmse": 1.6013,
+        "sfcdr_mae": 1.0712,
+        "sfcdr_rmse": 1.4285
+      }
+    }
+  ],
+  "selection": "Independent minimum test MAE and RMSE over 10 epochs, following original update_results().",
+  "aggregation": "Arithmetic mean and sample standard deviation (ddof=1) across 10 distinct training seeds.",
+  "updated_at": "2026-11-16T12:09:21+08:00"
+}

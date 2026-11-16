@@ -164,6 +164,51 @@ written target rows matched exactly. Progress reads were changed to allow
 concurrent writes. The repository's Python source files remain identical to
 `c88e6fe`, and the experiment settings did not change during recovery.
 
+## Full MF reproduction: three tasks, three test ratios, ten seeds
+
+The execution plan is [experiments/full_reproduction_plan.json](experiments/full_reproduction_plan.json).
+It covers TGTOnly, EMCDR and PFCDR for Book → Movie, Book → Music and
+Music → Movie at 20%, 50% and 80% held-out common users. Each condition uses
+ten distinct training seeds, 2020 through 2029, on a fixed split created
+with seed 2020 and PYTHONHASHSEED=2020. The verified single run above is
+reused once as task 1 / 20% / seed 2020, leaving 89 new runs.
+
+Each run has a separate working directory, baseline checkpoint and prototype
+cache. It calls the original Run.main(), with the original model,
+optimizers, losses, inversion and voting functions. Auxiliary execution,
+monitoring and recovery scripts are outside this repository. All algorithm
+Python files remain identical to c88e6fe.
+
+Only evaluation batch sizes are reduced: task 1 remains 128; task 2 changes
+from 256 to 128, and task 3 changes from 512 to 128. Original training
+batches, inversion batch 200, inversion iterations 300, epoch count 10,
+learning rates, embedding dimension and hard-coded MF Top-K are retained.
+
+Before each run, its parameters are committed in
+[experiments/current_run.json](experiments/current_run.json). After completion,
+the actual per-epoch metrics are saved under results/full_reproduction/trials/
+and committed. Completed seeds and statistics are tracked in
+[results/full_reproduction/summary.json](results/full_reproduction/summary.json).
+Within a run, the original independently selected minimum MAE and RMSE are
+used. Across ten completed seeds, their arithmetic mean and sample standard
+deviation are calculated. A row is filled only after all ten seeds finish.
+Failed attempts and repeated launches of the same seed are never counted
+as additional independent runs.
+
+<!-- FULL_REPRODUCTION_TABLE_START -->
+| Task | Test users | Runs | TGT MAE | TGT RMSE | EMCDR MAE | EMCDR RMSE | PFCDR MAE | PFCDR RMSE |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Book → Movie | 20% | 1/10 | — | — | — | — | — | — |
+| Book → Movie | 50% | 0/10 | — | — | — | — | — | — |
+| Book → Movie | 80% | 0/10 | — | — | — | — | — | — |
+| Book → Music | 20% | 0/10 | — | — | — | — | — | — |
+| Book → Music | 50% | 0/10 | — | — | — | — | — | — |
+| Book → Music | 80% | 0/10 | — | — | — | — | — | — |
+| Music → Movie | 20% | 0/10 | — | — | — | — | — | — |
+| Music → Movie | 50% | 0/10 | — | — | — | — | — | — |
+| Music → Movie | 80% | 0/10 | — | — | — | — | — | — |
+<!-- FULL_REPRODUCTION_TABLE_END -->
+
 If the code is helpful for you, please cite this paper:
 
 ```
