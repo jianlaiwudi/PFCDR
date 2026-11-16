@@ -1,11 +1,11 @@
 {
-  "job_id": "task1_beta20_seed2021",
+  "job_id": "task1_beta50_seed2020",
   "task": "1",
   "ratio": [
-    0.8,
-    0.2
+    0.5,
+    0.5
   ],
-  "seed": 2021,
+  "seed": 2020,
   "base_model": "MF",
   "epoch": 10,
   "emb_dim": 10,
