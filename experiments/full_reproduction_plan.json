@@ -4,7 +4,7 @@
   "base_model": "MF",
   "tasks": ["1", "2", "3"],
   "test_percentages": [20, 50, 80],
-  "training_seeds": [2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029],
+  "training_seeds": [2020, 2021],
   "split_seed": 2020,
   "python_hash_seed": "2020",
   "gpu": "0",
@@ -20,7 +20,7 @@
   "effective_mf_topk": 70000,
   "source_code_revision": "c88e6fe",
   "selection_within_run": "Independent minimum test MAE and RMSE over 10 epochs, following original update_results().",
-  "aggregation_across_runs": "Arithmetic mean and sample standard deviation (ddof=1) across 10 distinct training seeds.",
+  "aggregation_across_runs": "Arithmetic mean and sample standard deviation (ddof=1) across the two distinct training seeds, 2020 and 2021.",
   "data_split_policy": "One fixed split per task and beta, made by original preprocessing with split_seed=2020 and PYTHONHASHSEED=2020.",
   "cache_policy": "Each task/beta/seed has an independent working directory, baseline checkpoint and prototype files.",
   "adopted_result": {
@@ -40,5 +40,16 @@
     "task3_beta20": {"tgt_mae":4.1077,"tgt_rmse":4.7057,"emcdr_mae":1.1669,"emcdr_rmse":1.4910,"sfcdr_mae":0.9865,"sfcdr_rmse":1.2658},
     "task3_beta50": {"tgt_mae":4.1232,"tgt_rmse":4.6848,"emcdr_mae":1.2114,"emcdr_rmse":1.5332,"sfcdr_mae":1.1014,"sfcdr_rmse":1.3262},
     "task3_beta80": {"tgt_mae":4.1381,"tgt_rmse":4.7436,"emcdr_mae":1.2373,"emcdr_rmse":1.6013,"sfcdr_mae":1.0712,"sfcdr_rmse":1.4285}
-  }
+  },
+  "repetitions_per_condition": 2,
+  "repetition_change": {
+    "changed_at": "2026-11-16T12:35:42+08:00",
+    "requested_by": "user",
+    "previous_repetitions_per_condition": 10,
+    "repetitions_per_condition": 2,
+    "previous_planned_runs": 90,
+    "planned_runs": 18,
+    "preserve_completed_and_active_runs": true
+  },
+  "paper_comparison_note": "This user-requested reproduction uses two runs per condition; the paper reports ten-run means."
 }

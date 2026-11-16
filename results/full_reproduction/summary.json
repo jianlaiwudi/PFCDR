@@ -1,5 +1,5 @@
 {
-  "planned_runs": 90,
+  "planned_runs": 18,
   "completed_runs": 1,
   "complete": false,
   "conditions": [
@@ -7,7 +7,7 @@
       "task": "1",
       "test_percentage": 20,
       "completed": 1,
-      "expected": 10,
+      "expected": 2,
       "training_seeds": [
         2020
       ],
@@ -27,7 +27,7 @@
       "task": "1",
       "test_percentage": 50,
       "completed": 0,
-      "expected": 10,
+      "expected": 2,
       "training_seeds": [],
       "complete": false,
       "mean": null,
@@ -45,7 +45,7 @@
       "task": "1",
       "test_percentage": 80,
       "completed": 0,
-      "expected": 10,
+      "expected": 2,
       "training_seeds": [],
       "complete": false,
       "mean": null,
@@ -63,7 +63,7 @@
       "task": "2",
       "test_percentage": 20,
       "completed": 0,
-      "expected": 10,
+      "expected": 2,
       "training_seeds": [],
       "complete": false,
       "mean": null,
@@ -81,7 +81,7 @@
       "task": "2",
       "test_percentage": 50,
       "completed": 0,
-      "expected": 10,
+      "expected": 2,
       "training_seeds": [],
       "complete": false,
       "mean": null,
@@ -99,7 +99,7 @@
       "task": "2",
       "test_percentage": 80,
       "completed": 0,
-      "expected": 10,
+      "expected": 2,
       "training_seeds": [],
       "complete": false,
       "mean": null,
@@ -117,7 +117,7 @@
       "task": "3",
       "test_percentage": 20,
       "completed": 0,
-      "expected": 10,
+      "expected": 2,
       "training_seeds": [],
       "complete": false,
       "mean": null,
@@ -135,7 +135,7 @@
       "task": "3",
       "test_percentage": 50,
       "completed": 0,
-      "expected": 10,
+      "expected": 2,
       "training_seeds": [],
       "complete": false,
       "mean": null,
@@ -153,7 +153,7 @@
       "task": "3",
       "test_percentage": 80,
       "completed": 0,
-      "expected": 10,
+      "expected": 2,
       "training_seeds": [],
       "complete": false,
       "mean": null,
@@ -169,6 +169,6 @@
     }
   ],
   "selection": "Independent minimum test MAE and RMSE over 10 epochs, following original update_results().",
-  "aggregation": "Arithmetic mean and sample standard deviation (ddof=1) across 10 distinct training seeds.",
-  "updated_at": "2026-11-16T12:09:21+08:00"
+  "aggregation": "Arithmetic mean and sample standard deviation (ddof=1) across the two distinct training seeds, 2020 and 2021.",
+  "updated_at": "2026-11-16T12:35:42+08:00"
 }
