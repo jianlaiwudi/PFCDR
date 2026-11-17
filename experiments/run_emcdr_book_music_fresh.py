@@ -50,12 +50,12 @@ def config_for(beta):
     return cfg
 
 
-def worker(beta):
+def worker(beta, job_root=None):
     import numpy as np
     import torch
     sys.path.insert(0,str(PROJECT))
     from run import Run
-    root=WORK/f'beta{beta}_seed2020'
+    root=Path(job_root) if job_root is not None else WORK/f'beta{beta}_seed2020'
     if any(root.rglob('*.pt')):
         raise RuntimeError('Fresh-run folder already contains model files; refusing checkpoint reuse')
     cfg=read_json(root/'config.json')

@@ -343,3 +343,23 @@ EMCDR 映射 10 个 epoch。调用现有 `Run.TgtOnly()` 和 `Run.EMCDR()`；
 | 50% | 2020 | 2.0009 | 2.3191 | 1.4723 | 1.8000 |
 | 80% | 2020 | 2.4670 | 2.8035 | 1.7191 | 2.1119 |
 <!-- EMCDR_BOOK_MUSIC_FRESH_END -->
+
+## 图书到音乐 EMCDR 学习率扫描
+
+按用户要求，比较论文中的学习率候选 0.001、0.005、0.01、0.02、0.1，
+覆盖 20%、50%、80% 三个测试用户比例，固定 seed=2020。
+沿用公开源码共享 `lr` 的行为：同一个候选值用于目标域 MF、源域 MF 和 EMCDR 映射的 Adam。
+其他设置保持不变：各阶段 10 个 epoch，训练 batch=512/512/128、测试 batch=256、
+emb_dim=10、weight_decay=0，不启用梯度累积，不运行 PFCDR 或模型反演。
+
+0.01 的三组刚已从随机初始化完成，本轮明确标注为“已完成的从头训练对照”纳入。
+其余四个学习率各新训练三个比例，均从随机初始化开始，不加载旧模型。
+因此包含 12 次新训练与 3 组已有对照，共 15 组比较，每组只有一次 seed=2020 运行。
+每组分别取映射训练 10 个 epoch 内最低 MAE 和最低 RMSE，不进行多次运行平均。
+保留全部结果与失败项，按最低实际误差标出各比例的候选结果，
+不按与论文数值的接近程度选择试验。
+
+计划：[emcdr_book_music_lr_grid_plan.json](experiments/emcdr_book_music_lr_grid_plan.json)。
+执行入口：`experiments/run_emcdr_book_music_lr_grid.py run`。
+每组开始前提交实际参数，完成后提交逐 epoch 记录和汇总，结果目录为
+`results/emcdr_book_music_lr_grid/`。每个试验记录来源是本轮新训练还是已有对照。
