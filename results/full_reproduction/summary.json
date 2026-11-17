@@ -1,6 +1,6 @@
 {
   "planned_runs": 18,
-  "completed_runs": 15,
+  "completed_runs": 16,
   "complete": false,
   "conditions": [
     {
@@ -251,14 +251,29 @@
     {
       "task": "3",
       "test_percentage": 50,
-      "completed": 1,
+      "completed": 2,
       "expected": 2,
       "training_seeds": [
-        2020
+        2020,
+        2021
       ],
-      "complete": false,
-      "mean": null,
-      "sample_std": null,
+      "complete": true,
+      "mean": {
+        "tgt_mae": 4.1555657386779785,
+        "tgt_rmse": 4.719271898269653,
+        "emcdr_mae": 1.1734399199485779,
+        "emcdr_rmse": 1.5058948397636414,
+        "sfcdr_mae": 1.0249145030975342,
+        "sfcdr_rmse": 1.338146686553955
+      },
+      "sample_std": {
+        "tgt_mae": 0.030731458885415404,
+        "tgt_rmse": 0.04128132082987431,
+        "emcdr_mae": 0.008863903710326124,
+        "emcdr_rmse": 0.012647510594846104,
+        "sfcdr_mae": 0.002763821737950387,
+        "sfcdr_rmse": 0.002142240016111722
+      },
       "paper_reference": {
         "tgt_mae": 4.1232,
         "tgt_rmse": 4.6848,
@@ -289,5 +304,5 @@
   ],
   "selection": "Independent minimum test MAE and RMSE over 10 epochs, following original update_results().",
   "aggregation": "Arithmetic mean and sample standard deviation (ddof=1) across the two distinct training seeds, 2020 and 2021.",
-  "updated_at": "2026-11-17T13:03:48+08:00"
+  "updated_at": "2026-11-17T13:35:27+08:00"
 }
