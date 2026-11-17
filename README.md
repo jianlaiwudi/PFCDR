@@ -313,3 +313,22 @@ If the code is helpful for you, please cite this paper:
 | 80% | 25000 | 2020 | 1.7501 | 2.3090 | 10 | 10 |
 | 80% | 30000 | 2020 | 1.8136 | 2.3414 | 10 | 10 |
 <!-- BOOK_MUSIC_K_SWEEP_END -->
+
+## 图书到音乐 EMCDR 从头重跑
+
+按用户要求，单独从随机初始化重跑 MF 图书到音乐的 EMCDR，
+覆盖 20%、50%、80% 三个测试用户比例，各用 seed=2020 运行一次。
+不加载此前的预训练模型或原型。已有数据划分仅在 SHA256 校验后复用。
+
+执行源码的前置训练顺序：目标域 MF 10 个 epoch，源域 MF 10 个 epoch，
+EMCDR 映射 10 个 epoch。调用现有 `Run.TgtOnly()` 和 `Run.EMCDR()`；
+训练 batch 分别为 512、512、128，评估 batch=256。
+采用 Adam、学习率 0.01、weight_decay=0、10 维嵌入及无偏置 10×10 映射。
+不启用梯度累积，不运行模型反演、PFCDR 或 K 扫描。
+论文提及预训练学习率搜索，本次使用公开源码默认 0.01，
+不将其表述为已核实的作者逐任务最优学习率。
+
+参数：[emcdr_book_music_fresh_plan.json](experiments/emcdr_book_music_fresh_plan.json)。
+执行器：`experiments/run_emcdr_book_music_fresh.py run`。
+各比例单独保存新模型、逐 epoch 指标和独立最低 MAE/RMSE，
+结果写入 `results/emcdr_book_music_fresh/` 并自动 Git 提交推送。
