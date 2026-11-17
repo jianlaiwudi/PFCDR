@@ -1,6 +1,6 @@
 {
   "planned_runs": 18,
-  "completed_runs": 12,
+  "completed_runs": 13,
   "complete": false,
   "conditions": [
     {
@@ -216,9 +216,11 @@
     {
       "task": "3",
       "test_percentage": 20,
-      "completed": 0,
+      "completed": 1,
       "expected": 2,
-      "training_seeds": [],
+      "training_seeds": [
+        2020
+      ],
       "complete": false,
       "mean": null,
       "sample_std": null,
@@ -270,5 +272,5 @@
   ],
   "selection": "Independent minimum test MAE and RMSE over 10 epochs, following original update_results().",
   "aggregation": "Arithmetic mean and sample standard deviation (ddof=1) across the two distinct training seeds, 2020 and 2021.",
-  "updated_at": "2026-11-17T11:45:50+08:00"
+  "updated_at": "2026-11-17T12:10:30+08:00"
 }
