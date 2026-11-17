@@ -2,7 +2,7 @@
   "task": "Book to Music",
   "seed": 2020,
   "complete": false,
-  "completed_conditions": 5,
+  "completed_conditions": 10,
   "planned_conditions": 15,
   "rows": [
     {
@@ -44,7 +44,47 @@
       "rmse": 1.58552086353302,
       "mae_epoch": 3,
       "rmse_epoch": 3
+    },
+    {
+      "beta": 50,
+      "k": 10000,
+      "mae": 1.2534887790679932,
+      "rmse": 1.733561635017395,
+      "mae_epoch": 6,
+      "rmse_epoch": 7
+    },
+    {
+      "beta": 50,
+      "k": 15000,
+      "mae": 1.2777340412139893,
+      "rmse": 1.7454233169555664,
+      "mae_epoch": 6,
+      "rmse_epoch": 6
+    },
+    {
+      "beta": 50,
+      "k": 20000,
+      "mae": 1.312431812286377,
+      "rmse": 1.764281153678894,
+      "mae_epoch": 6,
+      "rmse_epoch": 6
+    },
+    {
+      "beta": 50,
+      "k": 25000,
+      "mae": 1.354851484298706,
+      "rmse": 1.7891576290130615,
+      "mae_epoch": 6,
+      "rmse_epoch": 6
+    },
+    {
+      "beta": 50,
+      "k": 30000,
+      "mae": 1.4028762578964233,
+      "rmse": 1.818996787071228,
+      "mae_epoch": 6,
+      "rmse_epoch": 7
     }
   ],
-  "updated_at": "2026-11-17T16:47:56+08:00"
+  "updated_at": "2026-11-17T16:52:41+08:00"
 }
