@@ -176,10 +176,11 @@ The user reduced the plan from ten to two repetitions per condition on
 2026-11-16. The active seed-2021 training continues with its existing parameters.
 
 Each run has a separate working directory, baseline checkpoint and prototype
-cache. It calls the original Run.main(), with the original model,
-optimizers, losses, inversion and voting functions. Auxiliary execution,
-monitoring and recovery scripts are outside this repository. All algorithm
-Python files remain identical to c88e6fe.
+cache. These completed runs called the original Run.main(), with the original
+model, optimizers, losses, inversion and voting functions. Auxiliary execution,
+monitoring and recovery scripts were outside this repository. At execution time,
+all algorithm Python files were identical to c88e6fe. The optional changes below
+were added after the 18 runs completed and were not used in those results.
 
 Only evaluation batch sizes are reduced: task 1 remains 128; task 2 changes
 from 256 to 128, and task 3 changes from 512 to 128. Original training
@@ -211,6 +212,59 @@ as additional independent runs.
 | Music → Movie | 50% | 2/2 | 4.1556 | 4.7193 | 1.1734 | 1.5059 | 1.0249 | 1.3381 |
 | Music → Movie | 80% | 2/2 | 4.1675 | 4.7535 | 1.2269 | 1.5919 | 1.0681 | 1.4379 |
 <!-- FULL_REPRODUCTION_TABLE_END -->
+
+## 图书到音乐：K 扫描准备（正式训练待用户批准）
+
+计划见 [book_music_k_sweep_plan.json](experiments/book_music_k_sweep_plan.json)。
+仅针对 MF 的图书到音乐任务，拟比较 K=10000、15000、20000、25000、30000，
+沿用 20%、50%、80% 测试用户比例以及 2020、2021 两个训练种子。
+同一组训练参数分别评估所有 K，避免每个 K 都重复预训练和原型反演。
+论文第 5.4.1 节指出该任务在 K=10000～30000 区间效果最好。
+
+新增两个可选接口，原有调用的默认行为保持不变：
+
+- `MFBasedModel.forward(..., topk=20000)` 显式选择该次评估的 K。
+  未传此参数时仍使用历史值 70000，不会自动改用配置中的 `self.topk`。
+- `Run.train(..., accumulation_steps=2)` 在两个小批次后执行一次 Adam 更新。
+  也可通过 `config['accumulation_steps']` 按训练 stage 指定步数。
+  默认步数为 1。累积实现按实际样本数加权，最后不足两个批次时也会更新，
+  不会把最后一个小批次错误地固定除以 2。
+
+MF 不含 BatchNorm 和 Dropout。相同样本顺序、相同损失和优化器状态下，
+512 条样本累积两次的梯度对应 1024 条样本一次更新，允许浮点运算误差。
+这不表示与原先每 512 条更新一次的训练轨迹相同，也不能据此声称论文使用了 1024。
+公开配置中，该任务的源域、目标域、原型映射训练批次为 512，EMCDR 映射批次为 128。
+1024 出现在任务 3 的原型映射配置中。
+
+### 已完成的验证
+
+`tests/test_batch_accumulation_and_k.py` 的 7 项检查通过，涵盖 Adam 更新和状态、
+512×2 与 1024、尾部小批次、向量映射损失、默认更新路径，以及显式 K 投票。
+这些检查使用合成数据，没有训练 Amazon 实验模型。
+
+显存记录见 [feasibility.json](results/book_music_k_sweep/feasibility.json)。
+测试使用已有任务 2、20%、seed=2020 的基础模型和原型，仅读取并前向计算，
+没有 backward 或 optimizer.step，也不将本次探测的输出当作推荐准确率。
+
+| K | 评估 batch size | 峰值已分配显存（MiB） |
+| ---: | ---: | ---: |
+| 10000 | 512 | 1965.35 |
+| 15000 | 512 | 1965.35 |
+| 20000 | 512 | 1965.35 |
+| 25000 | 512 | 1965.35 |
+| 30000 | 512 | 1990.19 |
+
+512 和分成四个 128 批次的预测输出在本次探测中相同。
+上述显存不包含正式训练时可能同时驻留的数据和优化器状态。
+源域、目标域及原型映射的 512 训练批次已在此前任务 2 实验中运行成功。
+反演维持 batch=200；反演优化的是每个用户独立的物品权重，
+不能把训练阶段的 512×2 累积设置直接套到反演上。
+
+训练范围仍需用户选择：只扫描 K 保持原训练设置；
+仅为原型映射启用 512×2 并复用基础模型及原型；或全部训练阶段使用 512×2 并重新训练。
+若同时改变训练批次和 K，结果将分别标注，避免把两种因素的影响混为一谈。
+
+梯度累积参考：[PyTorch 2.3 文档](https://docs.pytorch.org/docs/2.3/notes/amp_examples.html#gradient-accumulation)。
 
 If the code is helpful for you, please cite this paper:
 
