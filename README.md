@@ -332,3 +332,12 @@ EMCDR 映射 10 个 epoch。调用现有 `Run.TgtOnly()` 和 `Run.EMCDR()`；
 执行器：`experiments/run_emcdr_book_music_fresh.py run`。
 各比例单独保存新模型、逐 epoch 指标和独立最低 MAE/RMSE，
 结果写入 `results/emcdr_book_music_fresh/` 并自动 Git 提交推送。
+
+
+### 图书到音乐 EMCDR 从头重跑结果
+
+<!-- EMCDR_BOOK_MUSIC_FRESH_START -->
+| 测试比例 | seed | 新跑 EMCDR MAE | 新跑 EMCDR RMSE | 论文 MAE | 论文 RMSE |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 20% | 2020 | 1.7241 | 2.0330 | 1.3524 | 1.6737 |
+<!-- EMCDR_BOOK_MUSIC_FRESH_END -->
