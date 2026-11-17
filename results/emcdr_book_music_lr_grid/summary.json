@@ -1,0 +1,84 @@
+{
+  "task": "Book to Music",
+  "method": "EMCDR",
+  "base_model": "MF",
+  "seed": 2020,
+  "finished_configurations": 3,
+  "successful_configurations": 3,
+  "planned_configurations": 15,
+  "adopted_controls": 3,
+  "new_training_runs": 12,
+  "complete": false,
+  "all_successful": false,
+  "rows": [
+    {
+      "beta": 20,
+      "lr": 0.01,
+      "success": true,
+      "run_kind": "adopted_fresh_baseline",
+      "paper_mae": 1.3524,
+      "paper_rmse": 1.6737,
+      "mae": 1.7241466045379639,
+      "rmse": 2.0329954624176025,
+      "delta_mae": 0.3717466045379638,
+      "delta_rmse": 0.3592954624176026
+    },
+    {
+      "beta": 50,
+      "lr": 0.01,
+      "success": true,
+      "run_kind": "adopted_fresh_baseline",
+      "paper_mae": 1.4723,
+      "paper_rmse": 1.8,
+      "mae": 2.0008628368377686,
+      "rmse": 2.3191325664520264,
+      "delta_mae": 0.5285628368377686,
+      "delta_rmse": 0.5191325664520263
+    },
+    {
+      "beta": 80,
+      "lr": 0.01,
+      "success": true,
+      "run_kind": "adopted_fresh_baseline",
+      "paper_mae": 1.7191,
+      "paper_rmse": 2.1119,
+      "mae": 2.4670400619506836,
+      "rmse": 2.8034539222717285,
+      "delta_mae": 0.7479400619506835,
+      "delta_rmse": 0.6915539222717286
+    }
+  ],
+  "best_by_ratio": {
+    "20": {
+      "mae": {
+        "lr": 0.01,
+        "value": 1.7241466045379639
+      },
+      "rmse": {
+        "lr": 0.01,
+        "value": 2.0329954624176025
+      }
+    },
+    "50": {
+      "mae": {
+        "lr": 0.01,
+        "value": 2.0008628368377686
+      },
+      "rmse": {
+        "lr": 0.01,
+        "value": 2.3191325664520264
+      }
+    },
+    "80": {
+      "mae": {
+        "lr": 0.01,
+        "value": 2.4670400619506836
+      },
+      "rmse": {
+        "lr": 0.01,
+        "value": 2.8034539222717285
+      }
+    }
+  },
+  "updated_at": "2026-11-17T18:33:37+08:00"
+}
