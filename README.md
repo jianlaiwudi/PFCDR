@@ -209,7 +209,7 @@ as additional independent runs.
 | Book → Music | 80% | 2/2 | 4.5394 | 5.2247 | 2.4422 | 2.7858 | 2.5904 | 2.8722 |
 | Music → Movie | 20% | 2/2 | 4.0931 | 4.6433 | 1.1192 | 1.4386 | 0.9827 | 1.2717 |
 | Music → Movie | 50% | 2/2 | 4.1556 | 4.7193 | 1.1734 | 1.5059 | 1.0249 | 1.3381 |
-| Music → Movie | 80% | 1/2 | — | — | — | — | — | — |
+| Music → Movie | 80% | 2/2 | 4.1675 | 4.7535 | 1.2269 | 1.5919 | 1.0681 | 1.4379 |
 <!-- FULL_REPRODUCTION_TABLE_END -->
 
 If the code is helpful for you, please cite this paper:
