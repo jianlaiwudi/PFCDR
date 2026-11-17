@@ -264,10 +264,18 @@ MF 不含 BatchNorm 和 Dropout。相同样本顺序、相同损失和优化器�
 
 本次按用户最终选择保留源码训练批次：源域 512、目标域 512、
 EMCDR 映射 128、原型映射 512，每个批次更新一次参数。
-测试批次使用已验证可行的 512，K 使用上述五个值。
+按用户最终要求，除 K 外均按该任务源码参数，测试批次恢复为 256，
+不使用先前提议的 512。K 使用上述五个值。
 每个 K 分别记录 10 个 epoch 内的最低 MAE、最低 RMSE，二者可能来自不同 epoch。
 共 3 组训练配置、15 组 K 评估配置；结果不是两次或十次运行的均值。
-2026-11-17，用户要求启动前先展示参数对照，当前尚未启动正式 K 扫描训练。
+2026-11-17，用户查看参数后已批准启动全部三个比例，并明确取消 K=70000 复核。
+执行入口为 `experiments/run_book_music_k_sweep.py run`。
+它校验并复用对应比例、seed=2020 的源码预训练模型与反演原型，
+重新训练原型映射 10 个 epoch。初始化与前序 DataLoader 的 PyTorch 随机状态会重放。
+同一批数据的五个 K 共用源码中的一次用户排序，再分别平均前 K 个用户的评分；
+该计算已与逐个调用原 MF 前向计算进行一致性检查，未改变匹配或评分规则。
+结果按比例写入 `results/book_music_k_sweep/trials/` 并提交推送，
+`results/book_music_k_sweep/summary.json` 汇总 15 组实际结果。
 
 梯度累积参考：[PyTorch 2.3 文档](https://docs.pytorch.org/docs/2.3/notes/amp_examples.html#gradient-accumulation)。
 
