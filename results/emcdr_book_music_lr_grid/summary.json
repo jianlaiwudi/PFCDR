@@ -3,13 +3,13 @@
   "method": "EMCDR",
   "base_model": "MF",
   "seed": 2020,
-  "finished_configurations": 14,
-  "successful_configurations": 14,
+  "finished_configurations": 15,
+  "successful_configurations": 15,
   "planned_configurations": 15,
   "adopted_controls": 3,
   "new_training_runs": 12,
-  "complete": false,
-  "all_successful": false,
+  "complete": true,
+  "all_successful": true,
   "rows": [
     {
       "beta": 20,
@@ -178,6 +178,18 @@
       "rmse": 1.9602692127227783,
       "delta_mae": -0.13748586330413826,
       "delta_rmse": -0.15163078727722157
+    },
+    {
+      "beta": 80,
+      "lr": 0.1,
+      "success": true,
+      "run_kind": "new_fresh_training",
+      "paper_mae": 1.7191,
+      "paper_rmse": 2.1119,
+      "mae": 4.513439178466797,
+      "rmse": 5.072842597961426,
+      "delta_mae": 2.794339178466797,
+      "delta_rmse": 2.960942597961426
     }
   ],
   "best_by_ratio": {
@@ -212,5 +224,5 @@
       }
     }
   },
-  "updated_at": "2026-11-17T22:24:49+08:00"
+  "updated_at": "2026-11-17T22:37:03+08:00"
 }
