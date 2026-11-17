@@ -340,4 +340,5 @@ EMCDR 映射 10 个 epoch。调用现有 `Run.TgtOnly()` 和 `Run.EMCDR()`；
 | 测试比例 | seed | 新跑 EMCDR MAE | 新跑 EMCDR RMSE | 论文 MAE | 论文 RMSE |
 | ---: | ---: | ---: | ---: | ---: | ---: |
 | 20% | 2020 | 1.7241 | 2.0330 | 1.3524 | 1.6737 |
+| 50% | 2020 | 2.0009 | 2.3191 | 1.4723 | 1.8000 |
 <!-- EMCDR_BOOK_MUSIC_FRESH_END -->

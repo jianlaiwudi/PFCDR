@@ -2,7 +2,7 @@
   "task": "Book to Music",
   "method": "EMCDR",
   "seed": 2020,
-  "completed_runs": 1,
+  "completed_runs": 2,
   "planned_runs": 3,
   "complete": false,
   "rows": [
@@ -14,7 +14,16 @@
       "emcdr_rmse": 2.0329954624176025,
       "paper_emcdr_mae": 1.3524,
       "paper_emcdr_rmse": 1.6737
+    },
+    {
+      "beta": 50,
+      "tgt_mae": 4.54733419418335,
+      "tgt_rmse": 5.221314907073975,
+      "emcdr_mae": 2.0008628368377686,
+      "emcdr_rmse": 2.3191325664520264,
+      "paper_emcdr_mae": 1.4723,
+      "paper_emcdr_rmse": 1.8
     }
   ],
-  "updated_at": "2026-11-17T17:48:21+08:00"
+  "updated_at": "2026-11-17T18:00:30+08:00"
 }
